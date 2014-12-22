@@ -20,7 +20,7 @@ use_inline_resources
 action :create do
   file new_resource.path_with_name do
     action :delete
-    only_if { new_resource.id }
+    only_if { new_resource.id && File.exists?(new_resource.path_with_name) }
   end
 
   file new_resource.path do
